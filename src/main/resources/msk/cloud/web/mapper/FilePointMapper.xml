@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="msk.cloud.web.mapper.FileTimeMapper">
+	<!-- 查询剩余值· -->
+    <select id="selectTimePoint" parameterType="msk.cloud.web.model.SysFileTime" resultType="int">
+      	SELECT size FROM sys_filetime where timepoint = #{timepoint};
+    </select>
+    <!-- 修改数据 -->
+    <update id="updateSize" parameterType="msk.cloud.web.model.SysFileTime">
+    	UPDATE sys_filetime SET size = #{size} WHERE timepoint= #{timepoint}
+    </update>
+	<!-- 插入数据 -->
+	 <insert id="insetTimePoint" parameterType="msk.cloud.web.model.SysFileTime" >
+		INSERT INTO sys_filetime  (timepoint,size)
+		 VALUES (#{timepoint},#{size})
+	</insert>
+</mapper>

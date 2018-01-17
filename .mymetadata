@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="CloudPrinting1.0"
+  id="myeclipse.1509587836965"
+  context-root="/CloudPrinting1.0"
+  j2ee-spec="6.0"
+  archive="CloudPrinting1.0.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

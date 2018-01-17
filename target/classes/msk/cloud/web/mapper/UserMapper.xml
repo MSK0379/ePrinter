@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="msk.cloud.web.mapper.UserMapper">
+	<!-- 根据主键查询 -->
+    <select id="selectByUser" parameterType="msk.cloud.web.model.SysUser" resultType="int">
+      	select count(*) from sys_user where uphone = #{uphone} and upassword = #{upassword}
+    </select>
+	<!-- 注册 根据id -->
+	 <delete id="insertByUser" parameterType="msk.cloud.web.model.SysUser">
+		INSERT INTO sys_user (uphone,uname,upassword,umoney)  VALUES (#{uphone},#{uname},#{upassword,jdbcType=VARCHAR},#{umoney})
+	</delete>
+	<!-- 查询用户是否存在 -->
+	<select id="checkUphone"  parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(*) from sys_user where uphone = #{uphone}
+	</select>
+	<!-- 查询余额 -->
+	<select id="selectMoney" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT umoney from sys_user where uphone = #{uphone}
+	</select>
+	<!-- 扣钱 -->
+	<update id="changeMoney" parameterType="msk.cloud.web.model.SysUser">
+		UPDATE sys_user set umoney = #{umoney} WHERE uphone = #{uphone}		
+	</update>
+</mapper>

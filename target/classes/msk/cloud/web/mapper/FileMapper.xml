@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="msk.cloud.web.mapper.FileMapper">
+	<!-- 查询唯一主键· -->
+    <select id="selectFid" resultType="int">
+      	SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA='cloudprinting' AND TABLE_NAME='sys_file'
+    </select>
+	<!-- 插入数据 -->
+	 <delete id="insertByFile" parameterType="msk.cloud.web.model.SysFile" >
+		INSERT INTO sys_file 
+		(uphone,fprinterno,fname,furl,fnum,fdownload,fprint,fside,fcolor,fstart,fend,fcopies,
+			fpapersize,fsidenum,fstyle,fuploadtime,fplantime,fmodel,fspent,fstate) 
+		 VALUES 
+		 (#{uphone},#{fprinterno},#{fname},#{furl},#{fnum},#{fdownload},#{fprint},#{fside},#{fcolor},#{fstart},#{fend},#{fcopies},
+		 	#{fpapersize},#{fsidenum},#{fstyle},#{fuploadtime},#{fplantime},#{fmodel},#{fspent},#{fstate})
+	</delete>
+	<!-- 查询已打印订单 -->
+	<select id="selectFinish" parameterType="java.lang.String" resultType="msk.cloud.web.model.SysFile">
+		select * from sys_file where fprint = 1 and uphone = #{uphone}
+	</select>
+	<!-- 查询未打印订单 -->
+	<select id="selectUnFinish" parameterType="java.lang.String" resultType="msk.cloud.web.model.SysFile">
+		select * from sys_file where fprint = 0 and uphone = #{uphone}
+	
+	</select>
+</mapper>
